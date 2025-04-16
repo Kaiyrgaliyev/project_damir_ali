@@ -1,0 +1,31 @@
+<!-- filepath: c:\Users\admin\Documents\OneDrive\Рабочий стол\Новая папка\django-template\hello\templates\hello\log_message_list.html -->
+{% extends 'hello/layout.html' %}
+
+{% block title %}Log Messages{% endblock %}
+
+{% block content %}
+<h2>Log Messages</h2>
+
+<form method="get" action="{% url 'log_message_list' %}">
+    <input type="text" name="q" value="{{ query }}" placeholder="Search messages">
+    <button type="submit">Search</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Message</th>
+            <th>Date Logged</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for message in messages %}
+        <tr>
+            <td>{{ message.message }}</td>
+            <td>{{ message.log_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'log_message_create' %}">Add a new message</a>
+{% endblock %}
