@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'hello/site.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <span class="navbar-brand">My App</span>
+        <a class="navbar-item" href="{% url 'home' %}">Home</a>
+        <a class="navbar-item" href="{% url 'log_message_list' %}">Log Messages</a>
+    </header>
+    <main class="body-content">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 My App</p>
+    </footer>
+</body>
+</html>
