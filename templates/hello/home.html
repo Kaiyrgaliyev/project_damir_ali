@@ -1,0 +1,14 @@
+{% extends 'hello/layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Welcome to the Log Message App</h2>
+<p>Here you can create, view, and manage log messages. Use the navigation menu to explore the app.</p>
+<ul>
+    {% for message in message_list %}
+        <li>{{ message.message }} ({{ message.log_date }})</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'log_message_list' %}">View all messages</a>
+{% endblock %}

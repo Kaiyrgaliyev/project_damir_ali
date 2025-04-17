@@ -1,0 +1,14 @@
+{% extends 'hello/layout.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}</h2>
+<p>Your messages:</p>
+<ul>
+    {% for message in user_messages %}
+        <li>{{ message.message }} ({{ message.log_date }})</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'log_message_create' %}">Add a new message</a>
+{% endblock %}
