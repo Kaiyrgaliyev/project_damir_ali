@@ -10,6 +10,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.shortcuts import render
 from .models import Category
+from .models import Ad
+from .models import Review
 
 def category_list(request):
     categories = Category.objects.all()
@@ -95,3 +97,24 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'hello/register.html', {'form': form})
+
+def ad_list(request):
+    category_id = request.GET.get('category')
+    is_promoted = request.GET.get('is_promoted') == '1'
+
+    ads = Ad.objects.all()
+    if category_id:
+        ads = ads.filter(category_id=category_id)
+    if is_promoted:
+        ads = ads.filter(is_promoted=True)
+
+    categories = Category.objects.all()
+    return render(request, 'hello/ad_list.html', {'ads': ads, 'categories': categories})
+
+
+@login_required
+def user_profile(request):
+    """Отображает личный кабинет пользователя."""
+    user_messages = LogMessage.objects.filter(user=request.user)
+    reviews = Review.objects.filter(reviewed_user=request.user)
+    return render(request, 'hello/user_profile.html', {'user_messages': user_messages, 'reviews': reviews})

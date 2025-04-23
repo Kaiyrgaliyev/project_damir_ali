@@ -2,6 +2,8 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from hello import views
 from hello.models import LogMessage
+from django.conf import settings
+from django.conf.urls.static import static
 
 home_list_view = views.HomeListView.as_view(
     queryset=LogMessage.objects.order_by("-log_date")[:5],  # :5 limits the results to the five most recent
@@ -24,4 +26,11 @@ urlpatterns = [
     path("login/", auth_views.LoginView.as_view(template_name="hello/login.html"), name="login"),  # Вход
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),  # Выход
     path("register/", views.register, name="register"),  # Регистрация
+    path('ads/', views.ad_list, name='ad_list'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'django.views.defaults.page_not_found'
+handler500 = 'django.views.defaults.server_error'
