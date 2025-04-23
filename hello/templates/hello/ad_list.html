@@ -1,0 +1,30 @@
+{% extends 'hello/layout.html' %}
+
+{% block title %}Объявления{% endblock %}
+
+{% block content %}
+<h2>Объявления</h2>
+<form method="get">
+    <select name="category">
+        <option value="">Все категории</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <label>
+        <input type="checkbox" name="is_promoted" value="1"> Только продвигаемые
+    </label>
+    <button type="submit">Фильтровать</button>
+</form>
+
+<ul>
+    {% for ad in ads %}
+        <li>
+            <strong>{{ ad.title }}</strong> - {{ ad.description }}
+            {% if ad.is_promoted %}
+                <span style="color: green;">(Продвигаемое)</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

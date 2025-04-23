@@ -1,13 +1,19 @@
-{% extends 'hello/layout.html' %}
-
-{% block title %}User Profile{% endblock %}
-
 {% block content %}
 <h2>Welcome, {{ user.username }}</h2>
 <p>Your messages:</p>
 <ul>
     {% for message in user_messages %}
         <li>{{ message.message }} ({{ message.log_date }})</li>
+    {% endfor %}
+</ul>
+
+<h3>Отзывы:</h3>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.reviewer.username }}</strong>: {{ review.rating }}/5
+            <p>{{ review.comment }}</p>
+        </li>
     {% endfor %}
 </ul>
 <a href="{% url 'log_message_create' %}">Add a new message</a>

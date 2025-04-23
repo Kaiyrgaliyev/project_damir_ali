@@ -8,7 +8,12 @@ from .models import ChatMessage
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.shortcuts import render
+from .models import Category
 
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'hello/category_list.html', {'categories': categories})
 @login_required
 def chat(request):
     """Отображает чат пользователя."""

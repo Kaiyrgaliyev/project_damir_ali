@@ -1,14 +1,35 @@
-{% extends 'hello/layout.html' %}
-
-{% block title %}Home{% endblock %}
-
-{% block content %}
-<h2>Welcome to the Log Message App</h2>
-<p>Here you can create, view, and manage log messages. Use the navigation menu to explore the app.</p>
-<ul>
-    {% for message in message_list %}
-        <li>{{ message.message }} ({{ message.log_date }})</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'log_message_list' %}">View all messages</a>
-{% endblock %}
+<!-- filepath: c:\Users\admin\Documents\OneDrive\Рабочий стол\Новая папка (3)\project_damir_ali\hello\templates\hello\home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Message App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/register/">Register</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/log_messages/">Log Messages</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome to the Shopping Area</h1>
+        <p>Find what you need.</p>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Log Message App</p>
+    </footer>
+    <script src="{% static 'hello/js/scripts.js' %}"></script>
+</body>
+</html>

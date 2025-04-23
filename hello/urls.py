@@ -10,14 +10,15 @@ home_list_view = views.HomeListView.as_view(
 )
 
 urlpatterns = [
-    path("", home_list_view, name="home"),  # Главная страница
-    path("about/", views.about, name="about"),  # Страница "О нас"
-    path("log/", views.log_message, name="log"),  # Форма логирования
-    path("log_messages/", views.log_message_list, name="log_message_list"),  # Список сообщений
-    path("log_messages/new/", views.log_message_create, name="log_message_create"),  # Создание нового сообщения
-    path('captcha/', include('captcha.urls')),  # Добавляем маршруты для CAPTCHA
-    path("profile/", views.user_profile, name="user_profile"),  # Личный кабинет
-    path("chat/", views.chat, name="chat"),  # Чат
+    path("", home_list_view, name="home"),
+    path("about/", views.about, name="about"),
+    path("log/", views.log_message, name="log"),
+    path("log_messages/", views.log_message_list, name="log_message_list"),
+    path("log_messages/new/", views.log_message_create, name="log_message_create"),
+    path('captcha/', include('captcha.urls')),
+    path("profile/", views.user_profile, name="user_profile"),
+    path("chat/", views.chat, name="chat"),
+    path('categories/', views.category_list, name='category_list'),
 
     # Аутентификация
     path("login/", auth_views.LoginView.as_view(template_name="hello/login.html"), name="login"),  # Вход
