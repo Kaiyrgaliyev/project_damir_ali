@@ -73,19 +73,6 @@ def log_message_list(request):
         messages = LogMessage.objects.all()
     return render(request, 'hello/log_message_list.html', {'messages': messages, 'query': query})
 
-
-def log_message_create(request):
-    """Creates a new log message."""
-    if request.method == 'POST':
-        form = LogMessageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('log_message_list')
-    else:
-        form = LogMessageForm()
-    return render(request, 'hello/log_message_create.html', {'form': form})
-
-
 def register(request):
     """Handles user registration."""
     if request.method == 'POST':
@@ -111,10 +98,23 @@ def ad_list(request):
     categories = Category.objects.all()
     return render(request, 'hello/ad_list.html', {'ads': ads, 'categories': categories})
 
-
 @login_required
 def user_profile(request):
     """Отображает личный кабинет пользователя."""
     user_messages = LogMessage.objects.filter(user=request.user)
     reviews = Review.objects.filter(reviewed_user=request.user)
     return render(request, 'hello/user_profile.html', {'user_messages': user_messages, 'reviews': reviews})
+
+@login_required
+def log_message_create(request):
+    if request.method == 'POST':
+        form = LogMessageForm(request.POST, request.FILES)
+        if form.is_valid():
+            log_message = form.save(commit=False)  # Не сохраняем сразу в БД
+            log_message.user = request.user  # Привязываем текущего пользователя
+            log_message.save()  # Теперь сохраняем с пользователем
+            return redirect('log_message_list')  # Перенаправляем после успеха
+    else:
+        form = LogMessageForm()
+    
+    return render(request, 'hello/log_message_create.html', {'form': form})

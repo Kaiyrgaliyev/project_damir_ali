@@ -1,13 +1,51 @@
 {% extends 'hello/layout.html' %}
 
-{% block title %}Create Log Message{% endblock %}
-
 {% block content %}
-<h2>Create a New Log Message</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
-<a href="{% url 'log_message_list' %}">Back to list</a>
+<div class="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto mt-8">
+    <h2 class="text-2xl font-bold mb-6 text-center">Создать объявление</h2>
+    
+    <form method="post" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        
+        <!-- Поле сообщения -->
+        <div>
+            <label class="block text-gray-700 mb-1">Текст объявления</label>
+            {{ form.message }}
+        </div>
+        
+        <!-- Поле для изображения -->
+        <div>
+            <label class="block text-gray-700 mb-1">Изображение (необязательно)</label>
+            {{ form.image }}
+            <p class="text-sm text-gray-500 mt-1">Максимальный размер: 5MB</p>
+        </div>
+        
+        <!-- Поле для видеофайла -->
+        <div>
+            <label class="block text-gray-700 mb-1">Видео (необязательно)</label>
+            {{ form.video }}
+            <p class="text-sm text-gray-500 mt-1">Поддерживаются MP4, MOV. Макс. размер: 20MB</p>
+        </div>
+        
+        <!-- Поле для ссылки на видео -->
+        <div>
+            <label class="block text-gray-700 mb-1">Или ссылка на YouTube/Vimeo</label>
+            {{ form.video_url }}
+        </div>
+        
+        <!-- CAPTCHA -->
+        <div class="pt-2">
+            {{ form.captcha }}
+        </div>
+        
+        <div class="flex justify-between items-center pt-4">
+            <a href="{% url 'log_message_list' %}" class="text-gray-600 hover:text-gray-800">
+                ← Назад к списку
+            </a>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+                Опубликовать
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -3,11 +3,84 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
-<a href="{% url 'login' %}">Already have an account? Login here.</a>
+<div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+    <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                Please correct the errors below.
+            </div>
+        {% endif %}
+
+        <div>
+            <label class="block text-gray-700 mb-1" for="id_username">Username</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            <label class="block text-gray-700 mb-1" for="id_email">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            <label class="block text-gray-700 mb-1" for="id_password1">Password</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                {% for error in form.password1.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            <label class="block text-gray-700 mb-1" for="id_password2">Confirm Password</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                {% for error in form.password2.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+            Register
+        </button>
+    </form>
+    <p class="mt-4 text-center text-gray-600">
+        Already have an account? <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login here</a>
+    </p>
+</div>
+
+<style>
+    /* Стилизация стандартных полей формы */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        outline: none;
+        transition: all 0.2s;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+</style>
 {% endblock %}

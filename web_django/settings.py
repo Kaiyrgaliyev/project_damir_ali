@@ -32,6 +32,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Настройки для загружаемых файлов
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ограничения на размер файлов
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
 
 # Application definition
 
