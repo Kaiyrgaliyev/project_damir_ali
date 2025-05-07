@@ -1,35 +1,56 @@
-<!-- filepath: c:\Users\admin\Documents\OneDrive\Рабочий стол\Новая папка (3)\project_damir_ali\hello\templates\hello\home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log Message App</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'hello/css/styles.css' %}">
+    <title>MySite – Smart Classifieds Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/register/">Register</a></li>
-                <li><a href="/login/">Login</a></li>
-                <li><a href="/log_messages/">Log Messages</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>Welcome to the Shopping Area</h1>
-        <p>Find what you need.</p>
-        <div id="content">
-            {% block content %}
-            {% endblock %}
+<body class="bg-white text-gray-900 font-sans leading-relaxed">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="{% url 'home' %}" class="text-2xl font-bold text-blue-600">MySite</a>
+            <div class="space-x-6 text-base font-medium">
+                <a href="{% url 'about' %}" class="hover:text-blue-500">About</a>
+                <a href="{% url 'log_message_list' %}" class="hover:text-blue-500">Log Messages</a>
+                <a href="{% url 'login' %}" class="hover:text-blue-500">Login</a>
+                <a href="{% url 'register' %}" class="hover:text-blue-500">Register</a>
+                <a href="{% url 'profile' %}" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Profile</a>
+            </div>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Log Message App</p>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="text-center py-20 px-6 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Welcome to MySite</h1>
+        <p class="text-2xl max-w-4xl mx-auto font-light">
+            Your all-in-one platform to <span class="font-semibold">buy, sell, trade, post ads, find services, jobs, and more</span> — safely and efficiently.
+        </p>
+    </header>
+
+    <!-- Feature Description -->
+    <section class="max-w-5xl mx-auto px-6 py-12 text-xl space-y-6">
+        <p>
+            At <strong>MySite</strong>, we empower users to connect through a modern, trusted classifieds experience. Whether you're looking to clear out your garage, promote your business, find local gigs, or simply discover unique items in your area — we've got you covered.
+        </p>
+        <p>
+            Effortlessly <span class="text-blue-600 font-semibold">create listings</span>, upload photos, set prices, and manage all your posts from your personal profile. Our intuitive interface and clean design make every interaction easy and enjoyable.
+        </p>
+        <p>
+            From second-hand furniture and electronics to housing, jobs, and services — <span class="font-semibold text-purple-700">everything is at your fingertips</span>. With advanced filters and smart search, finding what you need has never been faster.
+        </p>
+        <p>
+            Trusted by thousands of users daily, MySite is your go-to destination for local and national listings. Start exploring, posting, and connecting now!
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-16 py-6 text-center text-sm text-gray-500">
+        <p>&copy; 2025 MySite. All rights reserved.</p>
+        <p class="mt-1">Empowering your everyday life through smarter classifieds.</p>
     </footer>
-    <script src="{% static 'hello/js/scripts.js' %}"></script>
+
 </body>
 </html>

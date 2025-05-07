@@ -14,9 +14,11 @@
             </div>
         {% endif %}
 
+        
+        <!-- Username Field -->
         <div>
             <label class="block text-gray-700 mb-1" for="id_username">Username</label>
-            {{ form.username }}
+            <input type="text" name="username" id="id_username" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your username" value="{{ form.username.value }}">
             {% if form.username.errors %}
                 {% for error in form.username.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
@@ -24,9 +26,10 @@
             {% endif %}
         </div>
 
+        <!-- Email Field -->
         <div>
             <label class="block text-gray-700 mb-1" for="id_email">Email</label>
-            {{ form.email }}
+            <input type="email" name="email" id="id_email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email address" value="{{ form.email.value }}">
             {% if form.email.errors %}
                 {% for error in form.email.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
@@ -34,21 +37,23 @@
             {% endif %}
         </div>
 
+        <!-- Password Field -->
         <div>
-            <label class="block text-gray-700 mb-1" for="id_password1">Password</label>
-            {{ form.password1 }}
-            {% if form.password1.errors %}
-                {% for error in form.password1.errors %}
+            <label class="block text-gray-700 mb-1" for="id_password">Password</label>
+            <input type="password" name="password" id="id_password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password">
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                 {% endfor %}
             {% endif %}
         </div>
 
+        <!-- Confirm Password Field -->
         <div>
-            <label class="block text-gray-700 mb-1" for="id_password2">Confirm Password</label>
-            {{ form.password2 }}
-            {% if form.password2.errors %}
-                {% for error in form.password2.errors %}
+            <label class="block text-gray-700 mb-1" for="id_confirm_password">Confirm Password</label>
+            <input type="password" name="confirm_password" id="id_confirm_password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Confirm your password">
+            {% if form.confirm_password.errors %}
+                {% for error in form.confirm_password.errors %}
                     <p class="text-red-500 text-sm mt-1">{{ error }}</p>
                 {% endfor %}
             {% endif %}
@@ -59,6 +64,7 @@
             Register
         </button>
     </form>
+
     <p class="mt-4 text-center text-gray-600">
         Already have an account? <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login here</a>
     </p>
