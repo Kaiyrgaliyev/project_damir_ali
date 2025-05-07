@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My App{% endblock %}</title>
+    <title>{% block title %}My Cool Site{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="{% static 'hello/site.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
-<body>
-    <header class="navbar">
-        <span class="navbar-brand">My App</span>
-        <a class="navbar-item" href="{% url 'home' %}">Home</a>
-        <a class="navbar-item" href="{% url 'log_message_list' %}">Log Messages</a>
-    </header>
-    <main class="body-content">
-        {% block content %}{% endblock %}
+<body class="bg-gray-100 text-gray-900">
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-xl font-semibold text-blue-600">MySite</a>
+            <div class="space-x-4">
+                <a href="/about" class="text-gray-700 hover:text-blue-500">About</a>
+                <a href="/log-messages" class="text-gray-700 hover:text-blue-500">Log Messages</a>
+                <a href="/login" class="text-gray-700 hover:text-blue-500">Login</a>
+                <a href="/register" class="text-gray-700 hover:text-blue-500">Register</a>
+                <button class="btn" type="submit">Фильтровать</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto p-4 mt-4">
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
     </main>
-    <footer>
-        <p>&copy; 2025 My App</p>
+    <footer class="bg-white mt-10 py-4 border-t text-center text-sm text-gray-500">
+        &copy; 2025 MySite. All rights reserved.
     </footer>
+    <script src="{% static 'hello/js/scripts.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

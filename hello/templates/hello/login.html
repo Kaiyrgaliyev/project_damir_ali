@@ -59,4 +59,21 @@
         box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
     }
 </style>
+{% block extra_js %}
+    <script>
+        // JavaScript для обработки ошибок формы
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorDiv = document.querySelector('.bg-red-100');
+            if (errorDiv) {
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 5000); // Скрыть через 5 секунд
+            }
+        });
+    </script>
+    
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <!-- Поля формы -->
+  </form>
 {% endblock %}

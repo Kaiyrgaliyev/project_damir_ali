@@ -19,6 +19,17 @@
 
 <ul>
     {% for ad in ads %}
+        <li class="ad-card">
+            <strong>{{ ad.title }}</strong> - {{ ad.description }}
+            {% if ad.is_promoted %}
+                <span class="promoted">Продвигаемое</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    {% for ad in ads %}
         <li>
             <strong>{{ ad.title }}</strong> - {{ ad.description }}
             {% if ad.is_promoted %}

@@ -7,18 +7,12 @@ class LogMessageForm(forms.ModelForm):
 
     class Meta:
         model = LogMessage
-        fields = ['message', 'image', 'video', 'video_url']
+        fields = ['message', 'captcha']
         widgets = {
-            'message': forms.Textarea(attrs={'rows': 4}),
-            'video_url': forms.URLInput(attrs={'placeholder': 'https://youtube.com/...'})
+            'message': forms.Textarea(attrs={'rows': 4})
         }
-        labels = {
-            'video_url': 'YouTube/Vimeo ссылка'
-        }
-
     def clean_message(self):
         message = self.cleaned_data.get('message')
         if len(message) < 5:
             raise forms.ValidationError("Message must be at least 5 characters long.")
         return message
-    

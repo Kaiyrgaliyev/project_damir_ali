@@ -21,7 +21,7 @@ urlpatterns = [
     path("profile/", views.user_profile, name="user_profile"),
     path("chat/", views.chat, name="chat"),
     path('categories/', views.category_list, name='category_list'),
-
+    
     # Аутентификация
     path("login/", auth_views.LoginView.as_view(template_name="hello/login.html"), name="login"),  # Вход
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),  # Выход
